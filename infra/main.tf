@@ -130,20 +130,20 @@ resource "aws_db_subnet_group" "main" {
 }
 
 resource "aws_db_instance" "main" {
-  identifier              = "${local.name_prefix}-db"
-  engine                  = "mysql"
-  engine_version          = "8.0"
-  instance_class          = "db.t3.micro"
-  allocated_storage       = 20
-  username                = "root"
-  password                = "password123!"
-  db_name                 = "transactions"
-  db_subnet_group_name    = aws_db_subnet_group.main.name
-  publicly_accessible     = false
-  vpc_security_group_ids  = [aws_security_group.rds.id]
-  skip_final_snapshot     = true
-  deletion_protection     = false
-  apply_immediately       = true
+  identifier             = "${local.name_prefix}-db"
+  engine                 = "mysql"
+  engine_version         = "8.0"
+  instance_class         = "db.t3.micro"
+  allocated_storage      = 20
+  username               = "root"
+  password               = "password123!"
+  db_name                = "transactions"
+  db_subnet_group_name   = aws_db_subnet_group.main.name
+  publicly_accessible    = false
+  vpc_security_group_ids = [aws_security_group.rds.id]
+  skip_final_snapshot    = true
+  deletion_protection    = false
+  apply_immediately      = true
 }
 
 resource "aws_instance" "backend" {
@@ -293,7 +293,7 @@ resource "aws_instance" "backend" {
 }
 
 resource "aws_s3_bucket" "frontend" {
-  bucket = "${local.name_prefix}-frontend-${random_id.bucket_suffix.hex}"
+  bucket        = "${local.name_prefix}-frontend-${random_id.bucket_suffix.hex}"
   force_destroy = true
 }
 
